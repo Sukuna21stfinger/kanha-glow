@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Kanha Glow Candles</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="kahna glow logo.jpeg">
+</head>
+
+<body>
+  <!-- Auth Check Script -->
+  <script>
+    // Check authentication immediately
+    (function () {
+      const session = localStorage.getItem('kanha_admin_session');
+      if (!session) {
+        window.location.href = 'admin-login.html';
+        return;
+      }
+      const sessionData = JSON.parse(session);
+      // Session valid for 24 hours
+      if (Date.now() - sessionData.timestamp > 24 * 60 * 60 * 1000) {
+        localStorage.removeItem('kanha_admin_session');
+        window.location.href = 'admin-login.html';
+      }
+    })();
+  </script>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="kahna glow logo.jpeg" alt="Kanha Glow" class="logo-img">
+        <div>
+          <span class="logo-text">Kanha Glow Candles</span>
+          <span class="logo-tagline">Admin Panel</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">View Store</a></li>
+        <li><a href="cart.html" class="cart-icon">🛒 <span class="cart-count">0</span></a></li>
+        <li><a href="#" onclick="logout()"
+            style="background: #E74C3C; color: white; padding: 8px 15px; border-radius: 20px;">🚪 Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Header -->
+  <div class="admin-header">
+    <h1>🕯️ Admin Dashboard</h1>
+    <p>Manage your candles, combos, and inventory</p>
+  </div>
+
+  <!-- Admin Content -->
+  <div class="admin-page">
+    <div class="admin-container">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <ul class="admin-nav">
+          <li><a href="#" data-section="dashboard" class="active">📊 Dashboard</a></li>
+          <li><a href="#" data-section="products">🕯️ Products</a></li>
+          <li><a href="#" data-section="combos">🎁 Combos</a></li>
+          <li><a href="index.html">🏪 View Store</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="admin-section active">
+          <h2 class="admin-section-title">Dashboard Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">🕯️</div>
+              <div class="stat-value" id="totalProducts">0</div>
+              <div class="stat-label">Total Candles</div>
+            </div>
+            <div class="stat-card saffron">
+              <div class="stat-icon">🎁</div>
+              <div class="stat-value" id="totalCombos">0</div>
+              <div class="stat-label">Combo Packs</div>
+            </div>
+            <div class="stat-card gold">
+              <div class="stat-icon">📦</div>
+              <div class="stat-value" id="totalStock">0</div>
+              <div class="stat-label">Total Stock</div>
+            </div>
+            <div class="stat-card purple">
+              <div class="stat-icon">📋</div>
+              <div class="stat-value" id="totalOrders">0</div>
+              <div class="stat-label">Orders</div>
+            </div>
+          </div>
+          <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; text-align: center;">
+            <h3 style="color: var(--peacock-dark); margin-bottom: 15px;">Quick Actions</h3>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+              <button class="btn btn-primary"
+                onclick="document.querySelector('[data-section=products]').click(); setTimeout(() => openProductModal(), 100);">Add
+                New Candle</button>
+              <button class="btn btn-gold"
+                onclick="document.querySelector('[data-section=combos]').click(); setTimeout(() => openComboModal(), 100);">Create
+                Combo</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="admin-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 class="admin-section-title" style="margin: 0; border: none; padding: 0;">Manage Candles</h2>
+            <button class="btn btn-primary" onclick="openProductModal()">+ Add Candle</button>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </section>
+
+        <!-- Combos Section -->
+        <section id="combos" class="admin-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 class="admin-section-title" style="margin: 0; border: none; padding: 0;">Manage Combos</h2>
+            <button class="btn btn-gold" onclick="openComboModal()">+ Create Combo</button>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Combo Name</th>
+                <th>Products</th>
+                <th>Price</th>
+                <th>Savings</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="combosTableBody"></tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div id="productModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="productModalTitle">Add New Candle</h3>
+        <span class="modal-close" onclick="closeModal('productModal')">×</span>
+      </div>
+      <div class="modal-body">
+        <form id="productForm" onsubmit="event.preventDefault(); saveProduct();">
+          <div class="form-group">
+            <label>Candle Name *</label>
+            <input type="text" id="productName" required placeholder="e.g., Divine Lotus">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="productDescription" placeholder="Describe the fragrance and features"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Price (₹) *</label>
+              <input type="number" id="productPrice" required min="1" placeholder="450">
+            </div>
+            <div class="form-group">
+              <label>Stock *</label>
+              <input type="number" id="productStock" required min="0" placeholder="25">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="productCategory">
+              <option value="sacred">Sacred</option>
+              <option value="floral">Floral</option>
+              <option value="premium">Premium</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="url" id="productImageUrl" placeholder="https://..." onchange="previewImage()">
+            <div id="imagePreview" class="image-preview"></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('productModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="saveProduct()">Save Candle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Combo Modal -->
+  <div id="comboModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="comboModalTitle">Create New Combo</h3>
+        <span class="modal-close" onclick="closeModal('comboModal')">×</span>
+      </div>
+      <div class="modal-body">
+        <form id="comboForm" onsubmit="event.preventDefault(); saveCombo();">
+          <div class="form-group">
+            <label>Combo Name *</label>
+            <input type="text" id="comboName" required placeholder="e.g., Pooja Essentials Pack">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="comboDescription" placeholder="Describe what's special about this combo"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Select Products</label>
+            <div style="display: flex; gap: 10px;">
+              <select id="comboProducts" style="flex: 1;"></select>
+              <button type="button" class="btn btn-secondary btn-small" onclick="addProductToCombo()">Add</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Selected Products</label>
+            <div id="selectedProducts"
+              style="min-height: 60px; padding: 10px; background: #f5f5f5; border-radius: 10px;"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Original Price</label>
+              <div style="font-size: 1.2rem; color: var(--text-light); padding: 10px;" id="comboOriginalPrice">₹0</div>
+            </div>
+            <div class="form-group">
+              <label>Combo Price (₹) *</label>
+              <input type="number" id="comboPrice" required min="1" placeholder="999">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('comboModal')">Cancel</button>
+        <button class="btn btn-gold" onclick="saveCombo()">Save Combo</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

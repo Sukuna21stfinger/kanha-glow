@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanha Glow Candles - Divine Handcrafted Candles</title>
+    <meta name="description"
+        content="Experience divine fragrance with our handcrafted candles inspired by Lord Krishna. Premium quality, sacred scents.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="kahna glow logo.jpeg">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="kahna glow logo.jpeg" alt="Kanha Glow" class="logo-img">
+                <div>
+                    <span class="logo-text">Kanha Glow Candles</span>
+                    <span class="logo-tagline">Divine Illumination</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#combos">Combos</a></li>
+                <li>
+                    <a href="cart.html" class="cart-icon">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-om">ॐ</div>
+            <h1>Kanha Glow Candles</h1>
+            <span class="script-font">Divine Illumination</span>
+            <p class="hero-subtitle">Handcrafted Candles Inspired by Lord Krishna</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+                <a href="#combos" class="btn btn-secondary">View Combos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Divine Collection</h2>
+                <p>Each candle is handcrafted with love and devotion, bringing sacred fragrances to your home</p>
+            </div>
+            <div id="productsGrid" class="products-grid">
+                <!-- Products will be rendered by JavaScript -->
+                <div class="loader"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combos Section -->
+    <section id="combos" class="section combo-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Special Combo Packs</h2>
+                <p>Save more with our curated bundles, perfect for gifting and personal use</p>
+            </div>
+            <div id="combosGrid" class="combos-grid">
+                <!-- Combos will be rendered by JavaScript -->
+                <div class="loader"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" style="background: var(--sacred-cream);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div style="text-align: center; padding: 30px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🕯️</div>
+                    <h3 style="margin-bottom: 10px;">Handcrafted</h3>
+                    <p style="color: var(--text-light);">Each candle is lovingly handcrafted with premium ingredients
+                    </p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🌸</div>
+                    <h3 style="margin-bottom: 10px;">Sacred Scents</h3>
+                    <p style="color: var(--text-light);">Traditional fragrances inspired by temple rituals</p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🎁</div>
+                    <h3 style="margin-bottom: 10px;">Perfect Gifts</h3>
+                    <p style="color: var(--text-light);">Beautifully packaged for festive occasions</p>
+                </div>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🚚</div>
+                    <h3 style="margin-bottom: 10px;">Fast Delivery</h3>
+                    <p style="color: var(--text-light);">Secure packaging with nationwide shipping</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add to Cart</h3>
+                <span class="modal-close" onclick="closeModal('productModal')">×</span>
+            </div>
+            <div class="modal-body" id="productModalContent">
+                <!-- Content loaded dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('productModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addToCartFromModal()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="kahna glow logo.jpeg" alt="Kanha Glow" class="logo-img">
+                        <div>
+                            <span class="logo-text">Kanha Glow Candles</span>
+                            <span class="logo-tagline">Divine Illumination</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px;">Bringing divine light and sacred fragrances to your home. Each candle
+                        is crafted with devotion, inspired by the divine essence of Lord Krishna.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#combos">Combos</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li>📧 kanhaglow09@gmail.com</li>
+                        <li>📞 +91 6388009305</li>
+                        <li>📍 Gurugram, Haryana - 122003</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Shipping</h4>
+                    <div
+                        style="background: rgba(255,153,51,0.2); padding: 15px; border-radius: 10px; border-left: 3px solid var(--saffron);">
+                        <p style="color: var(--saffron-light); font-size: 0.9rem;">⚠️ Extra shipping charges may apply
+                            based on your location. We will confirm before dispatch.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 <span>Kanha Glow Candles</span>. Made with 🙏 and devotion. Jai Shri Krishna!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
