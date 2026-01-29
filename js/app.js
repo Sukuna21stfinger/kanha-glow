@@ -101,9 +101,12 @@ function renderCombos() {
 
     return `
             <div class="combo-card reveal" data-id="${combo.id}">
-                <span class="combo-badge">🎁 Special Combo</span>
+                <div class="product-image" style="height: 200px; margin-bottom: 20px; border-radius: 15px;">
+                    <img src="${combo.image}" alt="${combo.name}" onerror="this.src='https://via.placeholder.com/400x300?text=Combo'">
+                    <span class="stock-badge in-stock">COMBO</span>
+                </div>
                 <h3 class="combo-name">${combo.name}</h3>
-                <p style="color: var(--gold-light); margin-bottom: 15px;">${combo.description}</p>
+                <p style="color: var(--gold-light); margin-bottom: 15px; font-size: 0.9rem;">${combo.description}</p>
                 <ul class="combo-items">
                     ${comboWithProducts?.productDetails?.map(p => `
                         <li>${p.name} <span style="opacity: 0.7">(${formatPrice(p.price)})</span></li>

@@ -17,19 +17,23 @@
 
     /* Divine Accents */
     --saffron: #FF9933;
+    /* Vibrant Orangish Saffron */
     --saffron-dark: #E67E22;
-    --saffron-light: #FFAD5C;
+    --saffron-light: #FFB366;
 
     /* Royal Gold */
     --gold: #FFD700;
     --gold-dark: #DAA520;
     --gold-light: #FFEB99;
 
-    /* Sacred Colors */
-    --lotus-pink: #FFB7C5;
-    --deep-purple: #4B0082;
-    --divine-white: #FFF8F0;
-    --sacred-cream: #FDF5E6;
+    /* Sacred Colors - Muted/Matte variants */
+    --lotus-pink: #D4A5AF;
+    --deep-purple: #3D348B;
+    /* Muted Violet/Purple */
+    --peacock-dark: #1B263B;
+    /* Matte Navy */
+    --peacock-blue: #2B3A55;
+    /* Muted Blue */
 
     /* Neutrals */
     --dark-bg: #1A1A2E;
@@ -37,10 +41,12 @@
     --text-dark: #2C3E50;
     --text-light: #7F8C8D;
 
-    /* Gradients */
-    --divine-gradient: linear-gradient(135deg, #0F4C81 0%, #4B0082 50%, #0F4C81 100%);
+    /* Gradients - Subtle Matte Mix of Blue, Purple, and Violet */
+    --divine-gradient: linear-gradient(135deg, #1A1C3C 0%, #3D3D6B 50%, #3E2B5D 100%);
     --gold-gradient: linear-gradient(135deg, #FFD700 0%, #DAA520 50%, #FFD700 100%);
+    /* Restored Shiny Gold */
     --saffron-gradient: linear-gradient(135deg, #FF9933 0%, #E67E22 100%);
+    /* Vibrant Orange */
 
     /* Shadows */
     --divine-shadow: 0 10px 40px rgba(15, 76, 129, 0.3);
@@ -238,7 +244,7 @@ img {
 }
 
 .nav-links a {
-    color: var(--divine-white);
+    color: var(--gold-light);
     font-weight: 500;
     font-size: 0.95rem;
     letter-spacing: 1px;
@@ -262,13 +268,21 @@ img {
 }
 
 .nav-links a:hover {
-    color: var(--gold);
+    color: var(--saffron);
+    text-shadow: 0 0 10px rgba(255, 153, 51, 0.8);
 }
 
 .cart-icon {
     position: relative;
     font-size: 1.3rem;
     cursor: pointer;
+    color: var(--gold-light);
+    transition: var(--smooth);
+}
+
+.cart-icon:hover {
+    color: var(--saffron);
+    filter: drop-shadow(0 0 8px rgba(255, 153, 51, 0.8));
 }
 
 .cart-count {
@@ -303,13 +317,16 @@ img {
    Hero Section
    ============================================ */
 .hero {
-    min-height: 100vh;
+    min-height: 25vh;
+    /* Shrunk to 1/4 viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     background: var(--divine-gradient);
     overflow: hidden;
+    padding-top: 80px;
+    /* Space for navbar */
 }
 
 .hero::before {
@@ -335,17 +352,29 @@ img {
 }
 
 .hero-content {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
     z-index: 2;
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.hero-text-container {
+    text-align: left;
 }
 
 .hero-om {
     font-size: 4rem;
+    /* Reduced size for 1/4 page */
     color: var(--gold);
-    text-shadow: var(--glow-gold);
-    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(197, 160, 40, 0.2);
+    /* Duller matte glow */
+    margin-bottom: 0;
     animation: float 3s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
 @keyframes float {
@@ -361,25 +390,26 @@ img {
 }
 
 .hero h1 {
-    font-size: 4rem;
-    color: var(--divine-white);
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 2.2rem;
+    /* Compact for 1/4 page */
+    color: var(--gold);
+    margin-bottom: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero .script-font {
-    font-size: 3rem;
+    font-size: 1.8rem;
     color: var(--gold);
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: 0.9rem;
     color: var(--gold-light);
-    margin-bottom: 40px;
+    margin-bottom: 15px;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
 }
 
 .hero-buttons {
@@ -396,12 +426,13 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 15px 35px;
+    padding: 10px 25px;
+    /* More compact buttons */
     border-radius: 50px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
     cursor: pointer;
     transition: var(--smooth);
     border: none;
@@ -645,8 +676,10 @@ img {
 .combo-name {
     font-family: 'Cinzel', serif;
     font-size: 1.5rem;
-    color: var(--divine-white);
+    color: var(--gold);
+    /* Improved Visibility */
     margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .combo-items {
@@ -657,7 +690,8 @@ img {
 .combo-items li {
     color: var(--gold-light);
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    /* Golden divider */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1347,8 +1381,17 @@ img {
     margin-bottom: 12px;
 }
 
+.footer-links li {
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
 .footer-links a {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--gold-light);
     transition: var(--smooth);
 }
 

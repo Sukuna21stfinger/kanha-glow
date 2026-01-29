@@ -58,7 +58,7 @@ const sampleProducts = [
         category: "glass",
         featured: false
     },
-    
+
     // Sacred Flame - Decor Candles (60-80g, 12+ hrs)
     {
         id: 5,
@@ -215,7 +215,7 @@ const sampleCombos = [
         id: 102,
         name: "Trio Lumina Premium",
         description: "Premium set of 3 fragrant glass candles. Perfect centerpiece.",
-        products: [4, 4, 3], 
+        products: [4, 4, 3],
         originalPrice: 747,
         comboPrice: 649,
         image: "images/glass duo lit combo edit.PNG",
